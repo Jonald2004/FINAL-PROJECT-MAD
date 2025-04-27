@@ -4,8 +4,8 @@
 
 import {AppRegistry} from 'react-native';
 import App from './App';
-import SignInPage from './SingInPage';
 import SignUpPage from './SingUpPage';
+import SignInPage from './SingInPage';
 
 import Pages1 from './Pages1';
 import tes2 from './tes2';

@@ -16,11 +16,9 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
       accessibilityLabel="Sign in with Google">
       <View style={styles.content}>
         <Image
-          source={{
-            uri: 'https://cdn.builder.io/api/v1/image/assets/TEMP/fd60cc76d7163cb1d656f77733995192fb434610?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be',
-          }}
-          style={styles.icon}
-          accessibilityLabel="Google icon"
+          source={require('../../assets/GoogleLogo.png')}
+          style={styles.googleIcon}
+          resizeMode="contain"
         />
         <Text style={styles.text}>Google</Text>
       </View>
@@ -45,10 +43,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 7,
   },
-  icon: {
-    width: 11,
-    height: 15,
-    resizeMode: 'contain',
+  googleIcon: {
+    width: 18,
+    height: 18,
   },
   text: {
     fontSize: 12,

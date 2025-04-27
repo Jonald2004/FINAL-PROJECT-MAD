@@ -1,43 +1,38 @@
 import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import {LogoSection} from './components2/LogoSection';
 import {InputField} from './components2/InputField';
 import {Button} from './components2/Button';
-import {Divider} from './components2/Divider';
 
 export const SignInPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Handle login logic
-  };
-
-  const handleGoogleLogin = () => {
-    // Handle Google login logic
-  };
-
-  const handleForgotPassword = () => {
-    // Handle forgot password logic
-  };
-
-  const handleSignUp = () => {
-    // Handle sign up logic
-  };
+  const handleLogin = () => {};
+  const handleGoogleLogin = () => {};
+  const handleForgotPassword = () => {};
+  const handleSignUp = () => {};
 
   return (
     <View style={styles.container}>
-      <LogoSection />
+      {/* Logo iBox */}
+      <View style={styles.logoWrapper}>
+        <Image
+          source={require('./assets/LogoiBoxAPPS.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </View>
 
+      {/* Title */}
       <Text style={styles.title}>Masuk</Text>
 
+      {/* Form */}
       <View style={styles.formContainer}>
         <InputField
           placeholder="Email atau no. handphone"
           value={email}
           onChangeText={setEmail}
         />
-
         <InputField
           placeholder="Password"
           value={password}
@@ -62,17 +57,20 @@ export const SignInPage: React.FC = () => {
         </TouchableOpacity>
       </View>
 
+      {/* Footer */}
       <View style={styles.footerContainer}>
-        <Divider />
+        <View style={styles.dividerRow}>
+          <View style={styles.divider} />
+          <Text style={styles.orText}>ATAU</Text>
+          <View style={styles.divider} />
+        </View>
 
         <TouchableOpacity
           style={styles.googleButton}
           onPress={handleGoogleLogin}>
           <View style={styles.googleButtonContent}>
             <Image
-              source={{
-                uri: 'https://cdn.builder.io/api/v1/image/assets/TEMP/32850a971c695f9972f9751f58ac45a95bc7ef18?placeholderIfAbsent=true&apiKey=7eb232b930d84f9dbc8482e438a7b67a',
-              }}
+              source={require('./assets/GoogleLogo.png')}
               style={styles.googleIcon}
               resizeMode="contain"
             />
@@ -87,78 +85,104 @@ export const SignInPage: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 'auto',
-    maxWidth: 480,
-    width: '100%',
-    paddingLeft: 23,
-    paddingRight: 72,
+    paddingHorizontal: 23,
     paddingTop: 45,
-    paddingBottom: 130,
-    fontFamily: 'Roboto',
+    backgroundColor: '#fff',
+  },
+  logoWrapper: {
+    alignItems: 'flex-start',
+    marginBottom: 20,
+  },
+  logo: {
+    width: 98,
+    height: 19,
   },
   title: {
-    color: 'rgba(30, 30, 30, 1)',
     fontSize: 32,
-    fontFamily: 'Public Sans',
     fontWeight: '700',
-    alignSelf: 'center',
-    marginTop: 251,
+    fontFamily: 'Public Sans',
+    color: '#1E1E1E',
+    textAlign: 'center',
+    marginTop: 30,
+    marginBottom: 30,
   },
   formContainer: {
-    gap: 7,
-    marginTop: 28,
-    paddingHorizontal: 20,
+    width: '100%',
+    alignItems: 'center', // semua input center
+    marginBottom: 40,
   },
   forgotPassword: {
-    marginLeft: 49,
-    marginTop: 7,
+    alignSelf: 'flex-start',
+    marginTop: 8,
+    marginBottom: 15,
   },
   forgotPasswordText: {
-    color: 'rgba(0, 113, 231, 1)',
+    color: '#0071E7',
     textDecorationLine: 'underline',
     fontSize: 12,
     fontWeight: '500',
   },
   loginButton: {
-    marginTop: 18,
+    marginTop: 10,
+    width: 150,
+    height: 40,
+    borderRadius: 20,
     alignSelf: 'center',
   },
   signUpContainer: {
-    marginTop: 18,
-    alignItems: 'center',
+    marginTop: 15,
+    alignSelf: 'center',
   },
   signUpText: {
-    color: 'rgba(0, 113, 227, 1)',
+    color: '#0071E7',
     fontSize: 12,
     fontWeight: '500',
-    textAlign: 'center',
   },
   footerContainer: {
-    marginTop: 174,
+    marginTop: 40,
+    alignItems: 'center',
+    width: '100%',
+  },
+  dividerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 20,
+  },
+  divider: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#E0E0E0',
+  },
+  orText: {
+    marginHorizontal: 10,
+    fontSize: 12,
+    color: '#C6C5C5',
+    fontFamily: 'Roboto',
   },
   googleButton: {
-    borderRadius: 4,
-    borderColor: 'rgba(110, 110, 115, 1)',
-    borderWidth: 1,
-    marginTop: 47,
-    width: 296,
-    maxWidth: '100%',
-    paddingHorizontal: 70,
-    paddingVertical: 9,
+    flexDirection: 'row',
     alignItems: 'center',
+    borderRadius: 6,
+    borderColor: '#6E6E73',
+    borderWidth: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    width: 296,
+    justifyContent: 'center',
   },
   googleButtonContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 7,
   },
   googleIcon: {
-    width: 11,
-    aspectRatio: 0.73,
+    width: 18,
+    height: 18,
   },
   googleButtonText: {
-    color: 'rgba(110, 110, 115, 1)',
+    marginLeft: 10,
     fontSize: 12,
+    color: '#6E6E73',
     fontWeight: '500',
   },
 });
