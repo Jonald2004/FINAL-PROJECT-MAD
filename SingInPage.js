@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   formContainer: {
     gap: 7,
     marginTop: 28,
+    paddingHorizontal: 20,
   },
   forgotPassword: {
     marginLeft: 49,
