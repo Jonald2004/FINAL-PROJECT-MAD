@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     marginTop: 251,
   },
   formContainer: {
-    gap: 7,
+    gap: 5,
     marginTop: 28,
     paddingHorizontal: 20,
   },
