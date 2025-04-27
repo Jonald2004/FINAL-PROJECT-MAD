@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
-import Button from './button';
+import Button from '../Button';
 
 interface HighlightCardProps {
   image: string;
