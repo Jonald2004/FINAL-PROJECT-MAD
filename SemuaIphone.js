@@ -9,7 +9,7 @@ import ContactInfo from './components5/ContactInfo';
 import PaymentMethods from './components5/PaymentMethods';
 import SocialLinks from './components5/SocialLinks';
 
-const IphoneShowcase: React.FC = () => {
+const SemuaIphone: React.FC = () => {
   return (
     <ScrollView style={styles.container}>
       <WarningHeader />
@@ -154,4 +154,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IphoneShowcase;
+export default SemuaIphone;
