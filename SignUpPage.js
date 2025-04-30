@@ -11,8 +11,10 @@ import {
 import {CustomInput} from './components1/CustomInput';
 import {CustomButton} from './components1/CustomButton';
 import {GoogleSignInButton} from './components1/GoogleSignUpButton';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
 
-export const SignUpPage: React.FC = () => {
+export const SignUpPage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
@@ -20,13 +22,7 @@ export const SignUpPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
 
-  const handleSignUp = () => {
-    console.log('Sign up pressed');
-  };
-
-  const handleGoogleSignIn = () => {
-    console.log('Google sign in pressed');
-  };
+  const navigation = useNavigation();
 
   const handleTermsPress = () => {
     Linking.openURL('https://your-terms-url.com');
@@ -35,7 +31,11 @@ export const SignUpPage: React.FC = () => {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
-        {/* LOGO iBox */}
+        {/* Tombol back custom */}
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={styles.backText}>← Kembali ke halaman masuk</Text>
+        </TouchableOpacity>
+
         <Image
           source={require('./assets/LogoiBoxAPPS.png')}
           style={styles.logo}
@@ -70,18 +70,13 @@ export const SignUpPage: React.FC = () => {
         <View style={styles.termsContainer}>
           <TouchableOpacity
             style={[styles.checkbox, termsAccepted && styles.checkboxChecked]}
-            onPress={() => setTermsAccepted(!termsAccepted)}
-            accessibilityRole="checkbox"
-            accessibilityState={{checked: termsAccepted}}>
-            {termsAccepted && <View style={styles.checkboxInner} />}
+            onPress={() => setTermsAccepted(!termsAccepted)}>
+            {termsAccepted && <Icon name="check" size={16} color="#fff" />}
           </TouchableOpacity>
 
           <Text style={styles.termsText}>
             Dengan mendaftar, kamu setuju dengan{' '}
-            <Text
-              style={styles.termsLink}
-              onPress={handleTermsPress}
-              accessibilityRole="link">
+            <Text style={styles.termsLink} onPress={handleTermsPress}>
               Syarat, Ketentuan, dan Privasi kami.
             </Text>
           </Text>
@@ -89,7 +84,7 @@ export const SignUpPage: React.FC = () => {
 
         <CustomButton
           title="Daftar akun"
-          onPress={handleSignUp}
+          onPress={() => {}}
           style={styles.signUpButton}
         />
 
@@ -97,7 +92,13 @@ export const SignUpPage: React.FC = () => {
         <Text style={styles.orText}>ATAU</Text>
         <View style={styles.divider} />
 
-        <GoogleSignInButton onPress={handleGoogleSignIn} />
+        <GoogleSignInButton onPress={() => {}} />
+
+        <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+          <Text style={{color: '#0071E7', fontSize: 12, marginTop: 16}}>
+            Sudah punya akun? Masuk di sini
+          </Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -114,12 +115,18 @@ const styles = StyleSheet.create({
     paddingVertical: 40,
     backgroundColor: '#fff',
   },
+  backText: {
+    alignSelf: 'flex-start',
+    marginBottom: 12,
+    color: '#0071E7',
+    fontSize: 12,
+  },
   logo: {
     width: 98,
     height: 19,
     marginBottom: 40,
     alignSelf: 'flex-start',
-    marginLeft: 23, // Biar sejajar rapi dengan inputan
+    marginLeft: 23,
   },
   title: {
     fontSize: 28,
@@ -149,12 +156,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#0071E7',
     borderColor: '#0071E7',
   },
-  checkboxInner: {
-    width: 12,
-    height: 12,
-    backgroundColor: '#0071E7',
-    borderRadius: 2,
-  },
   termsText: {
     flex: 1,
     fontSize: 12,
@@ -167,10 +168,10 @@ const styles = StyleSheet.create({
   },
   signUpButton: {
     marginTop: 33,
-    width: 150, // Ukuran lebih kecil dari 80% layar
+    width: 150,
     height: 40,
     borderRadius: 20,
-    alignSelf: 'center', // Posisi tetap tengah
+    alignSelf: 'center',
   },
   divider: {
     width: '40%',

@@ -2,19 +2,16 @@ import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {InputField} from './components2/InputField';
 import {Button} from './components2/Button';
+import {GoogleSignInButton} from './components2/GoogleSignUpButton';
+import {useNavigation} from '@react-navigation/native';
 
-export const SignInPage: React.FC = () => {
+export const SignInPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleLogin = () => {};
-  const handleGoogleLogin = () => {};
-  const handleForgotPassword = () => {};
-  const handleSignUp = () => {};
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      {/* Logo iBox */}
       <View style={styles.logoWrapper}>
         <Image
           source={require('./assets/LogoiBoxAPPS.png')}
@@ -23,10 +20,8 @@ export const SignInPage: React.FC = () => {
         />
       </View>
 
-      {/* Title */}
       <Text style={styles.title}>Masuk</Text>
 
-      {/* Form */}
       <View style={styles.formContainer}>
         <InputField
           placeholder="Email atau no. handphone"
@@ -40,24 +35,19 @@ export const SignInPage: React.FC = () => {
           secureTextEntry
         />
 
-        <TouchableOpacity
-          onPress={handleForgotPassword}
-          style={styles.forgotPassword}>
+        <TouchableOpacity style={styles.forgotPassword}>
           <Text style={styles.forgotPasswordText}>Lupa password?</Text>
         </TouchableOpacity>
 
-        <Button
-          title="Masuk"
-          onPress={handleLogin}
-          style={styles.loginButton}
-        />
+        <Button title="Masuk" onPress={() => {}} style={styles.loginButton} />
 
-        <TouchableOpacity onPress={handleSignUp} style={styles.signUpContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('SignUp')}
+          style={styles.signUpContainer}>
           <Text style={styles.signUpText}>Daftar akun</Text>
         </TouchableOpacity>
       </View>
 
-      {/* Footer */}
       <View style={styles.footerContainer}>
         <View style={styles.dividerRow}>
           <View style={styles.divider} />
@@ -65,18 +55,7 @@ export const SignInPage: React.FC = () => {
           <View style={styles.divider} />
         </View>
 
-        <TouchableOpacity
-          style={styles.googleButton}
-          onPress={handleGoogleLogin}>
-          <View style={styles.googleButtonContent}>
-            <Image
-              source={require('./assets/GoogleLogo.png')}
-              style={styles.googleIcon}
-              resizeMode="contain"
-            />
-            <Text style={styles.googleButtonText}>Google</Text>
-          </View>
-        </TouchableOpacity>
+        <GoogleSignInButton onPress={() => {}} />
       </View>
     </View>
   );
@@ -98,7 +77,7 @@ const styles = StyleSheet.create({
     height: 19,
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: '700',
     fontFamily: 'Public Sans',
     color: '#1E1E1E',
@@ -108,7 +87,7 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: '100%',
-    alignItems: 'center', // semua input center
+    alignItems: 'center',
     marginBottom: 40,
   },
   forgotPassword: {
@@ -159,31 +138,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#C6C5C5',
     fontFamily: 'Roboto',
-  },
-  googleButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: 6,
-    borderColor: '#6E6E73',
-    borderWidth: 1,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    width: 296,
-    justifyContent: 'center',
-  },
-  googleButtonContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  googleIcon: {
-    width: 18,
-    height: 18,
-  },
-  googleButtonText: {
-    marginLeft: 10,
-    fontSize: 12,
-    color: '#6E6E73',
-    fontWeight: '500',
   },
 });
 

@@ -48,6 +48,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 37,
     alignItems: 'center',
     justifyContent: 'center',
+    elevation: 2, // untuk Android
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
   primaryButton: {
     backgroundColor: '#0071E7',

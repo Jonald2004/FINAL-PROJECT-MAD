@@ -1,28 +1,30 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 
-interface GoogleSignUpButtonProps {
+interface GoogleSignInButtonProps {
   onPress: () => void;
 }
 
-export const GoogleSignInButton: React.FC<GoogleSignUpButtonProps> = ({
+export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
   onPress,
-}) => (
-  <TouchableOpacity
-    style={styles.container}
-    onPress={onPress}
-    accessibilityRole="button"
-    accessibilityLabel="Sign in with Google">
-    <View style={styles.content}>
-      <Image
-        source={require('../../assets/GoogleLogo.png')}
-        style={styles.googleIcon}
-        resizeMode="contain"
-      />
-      <Text style={styles.text}>Google</Text>
-    </View>
-  </TouchableOpacity>
-);
+}) => {
+  return (
+    <TouchableOpacity
+      style={styles.container}
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel="Sign in with Google">
+      <View style={styles.content}>
+        <Image
+          source={require('../../assets/GoogleLogo.png')}
+          style={styles.googleIcon}
+          resizeMode="contain"
+        />
+        <Text style={styles.text}>Google</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
