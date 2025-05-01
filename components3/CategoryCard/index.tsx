@@ -1,27 +1,17 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet, ImageSourcePropType} from 'react-native';
 
 interface CategoryCardProps {
-  image: string;
+  image: ImageSourcePropType;
   title: string;
   price: string;
 }
 
-export const CategoryCard: React.FC<CategoryCardProps> = ({
-  image,
-  title,
-  price,
-}) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({image, title, price}) => {
   return (
-    <View style={styles.container} accessible>
-      <Image
-        source={{uri: image}}
-        style={styles.image}
-        accessibilityLabel={title}
-      />
-      <Text style={styles.title} accessibilityRole="header">
-        {title}
-      </Text>
+    <View style={styles.container}>
+      <Image source={image} style={styles.image} />
+      <Text style={styles.title}>{title}</Text>
       <Text style={styles.price}>{price}</Text>
     </View>
   );
@@ -41,14 +31,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 15,
-    fontFamily: 'Public Sans',
     fontWeight: '600',
     color: '#1E1E1E',
     marginTop: 6,
   },
   price: {
     fontSize: 7,
-    fontFamily: 'Public Sans',
     fontWeight: '400',
     color: '#1E1E1E',
     marginTop: 6,

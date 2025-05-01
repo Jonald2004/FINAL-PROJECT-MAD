@@ -8,7 +8,6 @@ import {
   Dimensions,
   TouchableOpacity,
   Linking,
-  AccessibilityInfo,
 } from 'react-native';
 import ProductCard from './components3/ProductCard';
 import ServiceCard from './components3/ServiceCard';
@@ -18,25 +17,20 @@ import Button from './components3/Button';
 
 const {width} = Dimensions.get('window');
 
-export const HomePage: React.FC = () => {
-  const handleLinkPress = (url: string) => {
+const HomePage = () => {
+  const handleLinkPress = url => {
     Linking.openURL(url);
   };
 
   return (
-    <ScrollView style={styles.container} accessible>
+    <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={{
-            uri: 'https://cdn.builder.io/api/v1/image/assets/TEMP/3014484d7ed62603afbe5b135f26d53d5f135766?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be',
-          }}
+          source={require('./assets/LogoiBoxAPPS.png')}
           style={styles.logo}
-          accessibilityLabel="iBox Logo"
         />
         <TouchableOpacity
-          onPress={() => handleLinkPress('https://ibox.com/warning')}
-          accessibilityRole="link"
-          accessibilityLabel="Warning about fraud attempts">
+          onPress={() => handleLinkPress('https://ibox.com/warning')}>
           <Text style={styles.warningText}>
             Waspada terhadap upaya penipuan yang mengatasnamakan iBox. Info
             selengkapnya, <Text style={styles.warningLink}>klik di sini</Text>
@@ -46,28 +40,25 @@ export const HomePage: React.FC = () => {
 
       <View style={styles.heroSection}>
         <Image
-          source={{
-            uri: 'https://cdn.builder.io/api/v1/image/assets/TEMP/5b9c36756aefb67e6d04faaffe2b06dffe7cc140?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be',
-          }}
+          source={require('./assets/ImageHomePage/HP11.png')}
           style={styles.heroImage}
-          accessibilityLabel="Hero banner"
         />
         <Text style={styles.heroTitle}>Berbagai produk Apple.</Text>
       </View>
 
       <View style={styles.categories}>
         <CategoryCard
-          image="https://cdn.builder.io/api/v1/image/assets/TEMP/8c2b8441a6f0f4e95827ab5b7a912b1f9723c2fb?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be"
+          image={require('./assets/ImageHomePage/HP21.png')}
           title="Mac"
           price="Mulai Rp12 juta"
         />
         <CategoryCard
-          image="https://cdn.builder.io/api/v1/image/assets/TEMP/e1d06cd9d08afab995ba3efc5d6ee2021965e1da?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be"
+          image={require('./assets/ImageHomePage/HP2234.png')}
           title="iPhone"
           price="Mulai Rp8 juta"
         />
         <CategoryCard
-          image="https://cdn.builder.io/api/v1/image/assets/TEMP/8414a4525613194cf30cf11598cbf816a1fa6b62?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be"
+          image={require('./assets/ImageHomePage/HP23.png')}
           title="iPad"
           price="Mulai Rp5 juta"
         />
@@ -77,13 +68,13 @@ export const HomePage: React.FC = () => {
 
       <View style={styles.newProducts}>
         <ProductCard
-          image="https://cdn.builder.io/api/v1/image/assets/TEMP/a68755503ab18920db6ba549435d488084575028?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be"
+          image={require('./assets/ImageHomePage/HP3141.png')}
           title="Macbook Pro M4"
           description="Bertenaga super berkat M4."
           price="Mulai Rp27.999.000"
         />
         <ProductCard
-          image="https://cdn.builder.io/api/v1/image/assets/TEMP/b4642c93c175e9906efbba17427076b86cc2170c?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be"
+          image={require('./assets/ImageHomePage/HP3242.png')}
           title="Mac mini M4"
           description="Ukuran lebih kecil. Tenaga lebih besar."
           price="Mulai Rp9.999.000"
@@ -108,38 +99,32 @@ export const HomePage: React.FC = () => {
       </View>
 
       <HighlightCard
-        image="https://cdn.builder.io/api/v1/image/assets/TEMP/2b9cc9515bcaebfe6d50cf78ea53fec040900c02?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be"
+        image={require('./assets/ImageHomePage/HP3141.png')}
         title="MacBook Pro M4"
         description="Bertenaga super, berkat M4. Kini tersedia."
         price="Mulai dari Rp27.999.000"
       />
-
       <HighlightCard
-        image="https://cdn.builder.io/api/v1/image/assets/TEMP/b095002a16976e4bd3fba998cbffa19cea42567a?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be"
+        image={require('./assets/ImageHomePage/HP3242.png')}
         title="Mac mini M4"
         description="Ukuran lebih kecil. Tenaga lebih besar kini tersedia."
         price="Mulai dari Rp9.999.000"
       />
-
       <HighlightCard
-        image="https://cdn.builder.io/api/v1/image/assets/TEMP/9e1c3965b5a662b21969c00cc1e98198e860f46e?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be"
+        image={require('./assets/ImageHomePage/HP43.png')}
         title="Apple Watch Series 10"
         description="Tipis dan tetap klasik. Kini tersedia."
         price="Mulai dari Rp5.999.000"
       />
 
-      {/* Store Services Section */}
       <View style={styles.storeServices}>
         <Text style={styles.sectionTitle}>
           Ikuti kelas dan layanan lainnya di toko.
         </Text>
         <View style={styles.storeServiceCard}>
           <Image
-            source={{
-              uri: 'https://cdn.builder.io/api/v1/image/assets/TEMP/c9e6bd658a95371c91efda30f0a44735f31cef29?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be',
-            }}
+            source={require('./assets/ImageHomePage/HP11.png')}
             style={styles.storeServiceImage}
-            accessibilityLabel="Store service illustration"
           />
           <View style={styles.storeServiceContent}>
             <Text style={styles.storeServiceLabel}>IN STORE.</Text>
@@ -154,18 +139,14 @@ export const HomePage: React.FC = () => {
         </View>
       </View>
 
-      {/* Trade In Section */}
       <View style={styles.tradeIn}>
         <Text style={styles.sectionTitle}>
           Trade in produkmu dengan produk terbaru.
         </Text>
         <View style={styles.tradeInCard}>
           <Image
-            source={{
-              uri: 'https://cdn.builder.io/api/v1/image/assets/TEMP/b8f0267be086ae3b2586f7817524f11ebee3c985?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be',
-            }}
+            source={require('./assets/ImageHomePage/HP11.png')}
             style={styles.tradeInImage}
-            accessibilityLabel="iPhone 15"
           />
           <Text style={styles.tradeInTitle}>iPhone 15</Text>
           <Text style={styles.tradeInOriginalPrice}>Rp 11.999.000</Text>
@@ -180,14 +161,10 @@ export const HomePage: React.FC = () => {
         </View>
       </View>
 
-      {/* Footer */}
       <View style={styles.footer}>
         <Image
-          source={{
-            uri: 'https://cdn.builder.io/api/v1/image/assets/TEMP/2464177aafe90d095c3123626d7e3bb2a68c1c58?placeholderIfAbsent=true&apiKey=5a2266129e3445fbb07d6dab5d4689be',
-          }}
+          source={require('./assets/ImageHomePage/HP11.png')}
           style={styles.footerLogo}
-          accessibilityLabel="iBox logo"
         />
         <View style={styles.footerContent}>
           <View style={styles.footerSection}>
@@ -214,197 +191,160 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   header: {
-    paddingTop: 41,
-    alignItems: 'center',
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#eee',
   },
   logo: {
-    width: width,
-    height: width / 12.5,
-    resizeMode: 'contain',
+    width: 98,
+    height: 19,
+    marginBottom: 10,
   },
   warningText: {
-    padding: 15,
-    fontFamily: 'Roboto',
     fontSize: 12,
-    color: '#fff',
-    fontWeight: '500',
-    textAlign: 'center',
+    color: '#333',
   },
   warningLink: {
-    color: '#C6C5C5',
+    color: '#0071E7',
+    textDecorationLine: 'underline',
   },
   heroSection: {
-    marginTop: 15,
-    paddingHorizontal: 14,
+    alignItems: 'center',
+    padding: 20,
   },
   heroImage: {
-    width: '100%',
-    aspectRatio: 2.18,
+    width: width * 0.9,
+    height: 180,
     resizeMode: 'contain',
   },
   heroTitle: {
-    fontSize: 24,
-    fontFamily: 'Public Sans',
-    fontWeight: '600',
+    marginTop: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
     color: '#1E1E1E',
-    marginTop: 14,
   },
   categories: {
     flexDirection: 'row',
-    marginTop: 14,
-    paddingHorizontal: 14,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    marginVertical: 20,
   },
   sectionTitle: {
-    fontSize: 24,
-    fontFamily: 'Public Sans',
+    fontSize: 16,
     fontWeight: '600',
+    marginHorizontal: 20,
+    marginBottom: 10,
     color: '#1E1E1E',
-    marginTop: 14,
-    marginBottom: 14,
-    paddingHorizontal: 14,
   },
   newProducts: {
     flexDirection: 'row',
-    paddingHorizontal: 14,
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    marginBottom: 20,
   },
   services: {
     flexDirection: 'row',
-    paddingHorizontal: 14,
-    marginTop: 14,
-    gap: 8,
+    justifyContent: 'space-around',
+    marginVertical: 20,
   },
   storeServices: {
-    marginTop: 29,
-    paddingHorizontal: 14,
+    paddingHorizontal: 20,
+    marginBottom: 30,
   },
   storeServiceCard: {
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#6E6E73',
-    overflow: 'hidden',
+    flexDirection: 'row',
+    marginTop: 10,
   },
   storeServiceImage: {
-    width: '100%',
-    aspectRatio: 1.83,
-    resizeMode: 'contain',
+    width: 80,
+    height: 80,
+    marginRight: 15,
   },
   storeServiceContent: {
-    padding: 21,
+    flex: 1,
   },
   storeServiceLabel: {
     fontSize: 10,
-    color: '#6E6E73',
-    fontFamily: 'Public Sans',
-    fontWeight: '600',
+    color: '#0071E7',
+    fontWeight: 'bold',
   },
   storeServiceTitle: {
-    fontSize: 20,
-    color: '#1E1E1E',
-    fontFamily: 'Public Sans',
+    fontSize: 14,
     fontWeight: '600',
-    marginTop: 12,
+    color: '#1E1E1E',
   },
   storeServiceSubtitle: {
-    fontSize: 15,
-    color: '#1E1E1E',
-    fontFamily: 'Public Sans',
-    fontWeight: '600',
-    marginTop: 25,
+    fontSize: 12,
+    color: '#666',
   },
   storeServiceDescription: {
     fontSize: 12,
-    color: '#1E1E1E',
-    fontFamily: 'Public Sans',
-    fontWeight: '600',
-    marginTop: 7,
+    color: '#666',
   },
   tradeIn: {
-    marginTop: 12,
-    paddingHorizontal: 14,
+    padding: 20,
   },
   tradeInCard: {
-    borderRadius: 10,
-    padding: 17,
-    alignItems: 'center',
+    backgroundColor: '#f2f2f2',
+    padding: 15,
+    borderRadius: 8,
   },
   tradeInImage: {
     width: '100%',
-    aspectRatio: 1.19,
+    height: 180,
     resizeMode: 'contain',
-    borderRadius: 10,
   },
   tradeInTitle: {
-    fontSize: 15,
-    color: '#1E1E1E',
-    fontFamily: 'Public Sans',
-    fontWeight: '600',
-    marginTop: 14,
-    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginVertical: 10,
   },
   tradeInOriginalPrice: {
     fontSize: 12,
-    color: '#6E6E73',
-    fontFamily: 'Public Sans',
-    fontWeight: '600',
     textDecorationLine: 'line-through',
-    marginTop: 27,
+    color: '#999',
   },
   tradeInPriceContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 7,
+    marginVertical: 5,
   },
   tradeInPrice: {
-    fontSize: 15,
-    color: '#1E1E1E',
-    fontFamily: 'Public Sans',
-    fontWeight: '600',
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#0071E7',
+    marginRight: 10,
   },
   tradeInDiscount: {
     fontSize: 12,
-    color: '#E04327',
-    fontFamily: 'Public Sans',
-    fontWeight: '600',
-    marginLeft: 8,
+    color: '#FF3B30',
   },
   footer: {
-    marginTop: 65,
-    paddingHorizontal: 25,
-    paddingBottom: 28,
+    padding: 20,
+    backgroundColor: '#f8f8f8',
   },
   footerLogo: {
-    width: 130,
-    aspectRatio: 0.93,
-    resizeMode: 'contain',
-    alignSelf: 'center',
+    width: 98,
+    height: 19,
+    marginBottom: 10,
   },
   footerContent: {
-    marginTop: 56,
+    marginBottom: 10,
   },
   footerSection: {
-    marginBottom: 24,
+    marginBottom: 10,
   },
   footerTitle: {
-    fontSize: 18,
-    color: '#121212',
-    fontFamily: 'Inter',
-    fontWeight: '600',
-    marginBottom: 16,
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#1E1E1E',
   },
   footerText: {
-    fontSize: 14,
-    color: '#464646',
-    fontFamily: 'Inter',
-    marginBottom: 8,
+    fontSize: 12,
+    color: '#666',
   },
   copyright: {
     fontSize: 10,
-    color: '#6E6E73',
-    fontFamily: 'Inter',
+    color: '#aaa',
     textAlign: 'center',
-    marginTop: 24,
   },
 });
 

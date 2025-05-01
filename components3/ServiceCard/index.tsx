@@ -7,7 +7,7 @@ interface ServiceCardProps {
   type: 'pickup' | 'financing';
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({
+const ServiceCard: React.FC<ServiceCardProps> = ({
   title,
   description,
   type,
@@ -17,11 +17,9 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       style={[
         styles.container,
         type === 'financing' && styles.financingContainer,
-      ]}
-      accessible>
+      ]}>
       <Text
-        style={[styles.title, type === 'financing' && styles.financingTitle]}
-        accessibilityRole="header">
+        style={[styles.title, type === 'financing' && styles.financingTitle]}>
         {title}
       </Text>
       <Text
@@ -45,13 +43,11 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 8,
-    fontFamily: 'Public Sans',
     fontWeight: '600',
     color: '#707070',
   },
   description: {
     fontSize: 15,
-    fontFamily: 'Public Sans',
     fontWeight: '600',
     color: '#1E1E1E',
     marginTop: 6,

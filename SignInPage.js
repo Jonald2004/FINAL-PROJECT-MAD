@@ -1,3 +1,4 @@
+// ✅ FILE: SignInPage.js (final & improved)
 import React, {useState} from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {InputField} from './components2/InputField';
@@ -9,6 +10,11 @@ export const SignInPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
+
+  const handleLogin = () => {
+    // TODO: Validasi login atau API call di sini
+    navigation.navigate('Home');
+  };
 
   return (
     <View style={styles.container}>
@@ -39,7 +45,11 @@ export const SignInPage = () => {
           <Text style={styles.forgotPasswordText}>Lupa password?</Text>
         </TouchableOpacity>
 
-        <Button title="Masuk" onPress={() => {}} style={styles.loginButton} />
+        <Button
+          title="Masuk"
+          onPress={handleLogin}
+          style={styles.loginButton}
+        />
 
         <TouchableOpacity
           onPress={() => navigation.navigate('SignUp')}

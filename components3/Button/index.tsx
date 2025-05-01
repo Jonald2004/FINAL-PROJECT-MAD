@@ -6,13 +6,9 @@ interface ButtonProps {
   onPress: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({title, onPress}) => {
+const Button: React.FC<ButtonProps> = ({title, onPress}) => {
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={title}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );

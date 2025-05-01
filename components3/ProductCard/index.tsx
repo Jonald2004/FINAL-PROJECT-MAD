@@ -1,29 +1,23 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, Image, StyleSheet, ImageSourcePropType} from 'react-native';
 
 interface ProductCardProps {
-  image: string;
+  image: ImageSourcePropType;
   title: string;
   description: string;
   price: string;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({
+const ProductCard: React.FC<ProductCardProps> = ({
   image,
   title,
   description,
   price,
 }) => {
   return (
-    <View style={styles.container} accessible>
-      <Image
-        source={{uri: image}}
-        style={styles.image}
-        accessibilityLabel={title}
-      />
-      <Text style={styles.title} accessibilityRole="header">
-        {title}
-      </Text>
+    <View style={styles.container}>
+      <Image source={image} style={styles.image} />
+      <Text style={styles.title}>{title}</Text>
       <Text style={styles.description}>{description}</Text>
       <Text style={styles.price}>{price}</Text>
     </View>
@@ -42,25 +36,20 @@ const styles = StyleSheet.create({
     width: '100%',
     aspectRatio: 1.58,
     resizeMode: 'contain',
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
   },
   title: {
     fontSize: 15,
-    fontFamily: 'Public Sans',
     fontWeight: '600',
-    color: '#1E1E1E',
     marginTop: 6,
+    color: '#1E1E1E',
   },
   description: {
     fontSize: 8,
-    fontFamily: 'Public Sans',
     fontWeight: '600',
     color: '#1E1E1E',
   },
   price: {
     fontSize: 7,
-    fontFamily: 'Public Sans',
     fontWeight: '500',
     color: '#1E1E1E',
     marginTop: 18,
