@@ -27,7 +27,7 @@ const Header = () => {
         />
         <Image
           source={require('../../assets/Ikon/Icon4.png')}
-          style={styles.icon1}
+          style={styles.icon}
         />
       </View>
     </View>
@@ -58,13 +58,6 @@ const styles = StyleSheet.create({
     height: 20,
     resizeMode: 'contain',
     tintColor: '#D3D3D3',
-    marginHorizontal: 6,
-  },
-  icon1: {
-    width: 15,
-    height: 20,
-    resizeMode: 'contain',
-    tintColor: '#000',
     marginHorizontal: 6,
   },
   headerRight: {flexDirection: 'row', alignItems: 'center', top: 5},

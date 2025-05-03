@@ -18,7 +18,7 @@ const IphoneHighlightSection = () => {
 
       <Text style={styles.modelName}>iPhone 15</Text>
       <Text style={styles.tagline}>Kesegaran baru.</Text>
-      <Text style={styles.price}>Kini tersedia. Mulai dari Rp11.4999.000</Text>
+      <Text style={styles.price}>Kini tersedia. Mulai dari Rp11.499.000</Text>
 
       <TouchableOpacity style={styles.secondaryButton}>
         <Text style={styles.secondaryText}>Lebih lanjut &gt;</Text>
