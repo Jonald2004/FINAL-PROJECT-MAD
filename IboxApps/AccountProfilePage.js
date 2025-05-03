@@ -13,8 +13,8 @@ const AccountProfilePage = () => {
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <Header />
-      <InfoBanner />
       <View style={styles.wrapper}>
+        <InfoBanner />
         <AccountDropdownHeader />
         <AccountStatusCard />
         <TransactionAndAddressSection />

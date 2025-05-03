@@ -23,8 +23,8 @@ const HomePage = () => {
   return (
     <SafeAreaView style={styles.safe}>
       <Header />
-      <InfoBanner />
       <ScrollView showsVerticalScrollIndicator={false}>
+        <InfoBanner />
         <BannerCarousel />
         <ProductSection />
         <ProductSection2 />
