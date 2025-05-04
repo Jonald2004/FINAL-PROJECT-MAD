@@ -15,10 +15,14 @@ import LihatKeranjang from './IboxApps/LihatKeranjang';
 import FavoritePage from './IboxApps/FavoritePage';
 import Pemesanan from './IboxApps/Pemesanan';
 import LengkapiAlamat from './IboxApps/LengkapiAlamat';
+import SemuaMac from './IboxApps/SemuaMac';
+import Checkout from './IboxApps/Checkout';
+import ChatiBox from './IboxApps/ChatiBox';
+import Menu from './IboxApps/Menu';
 
 import Pages1 from './Pages1';
 import tes2 from './tes2';
 
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => LengkapiAlamat);
+AppRegistry.registerComponent(appName, () => AccountProfilePage);
