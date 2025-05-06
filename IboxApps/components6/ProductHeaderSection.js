@@ -7,11 +7,19 @@ const ProductHeaderSection = () => {
       <Text style={styles.productName}>iPhone 15</Text>
       <Text style={styles.sku}>SKU: 81000122762</Text>
 
-      <Image
-        source={require('../../assets/PilihDetailProduk/PDP11.png')}
-        style={styles.productImage}
-        resizeMode="contain"
-      />
+      <View style={styles.imageContainer}>
+        <Image
+          source={require('../../assets/PilihDetailProduk/PDP11.png')}
+          style={styles.productImage}
+          resizeMode="contain"
+        />
+        <TouchableOpacity style={styles.loveIconWrapper}>
+          <Image
+            source={require('../../assets/Ikon/Icon27.png')}
+            style={styles.loveIcon}
+          />
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.priceContainer}>
         <Text style={styles.oldPrice}>Rp11.999.000</Text>
@@ -56,10 +64,23 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginBottom: 12,
   },
+  imageContainer: {
+    position: 'relative',
+    marginBottom: 16,
+  },
   productImage: {
     width: '100%',
     height: 240,
-    marginBottom: 16,
+  },
+  loveIconWrapper: {
+    position: 'absolute',
+    top: 270,
+    right: 5,
+    zIndex: 10,
+  },
+  loveIcon: {
+    width: 28,
+    height: 28,
   },
   priceContainer: {
     marginBottom: 16,

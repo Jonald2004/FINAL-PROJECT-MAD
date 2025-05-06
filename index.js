@@ -25,4 +25,4 @@ import tes2 from './tes2';
 
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => AccountProfilePage);
+AppRegistry.registerComponent(appName, () => App);

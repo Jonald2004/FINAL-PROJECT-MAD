@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "473525915679",
+    "project_id": "iboxapps-mad2025",
+    "storage_bucket": "iboxapps-mad2025.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:473525915679:android:4710c5c311bcdd1595452a",
+        "android_client_info": {
+          "package_name": "com.finalmad"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4WrHxgo_tNUFTpOTecc3TCA-ppT3V2b8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

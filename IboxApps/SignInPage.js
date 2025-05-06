@@ -1,44 +1,29 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  ScrollView,
-  TouchableOpacity,
-  TextInput,
-  Pressable,
-  FlatList,
-  SafeAreaView,
-  StatusBar,
-  Dimensions,
-  Linking,
-  Platform,
-  ActivityIndicator,
-  Alert,
-  Modal,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
-  RefreshControl,
-  ImageBackground,
-  ImageSourcePropType,
-} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {InputField} from './components2/InputField';
 import {Button} from './components2/Button';
 import {GoogleSignInButton} from './components2/GoogleSignUpButton';
 
-export const SignInPage = () => {
+const SignInPage = () => {
+  const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  // Fungsi login
   const handleLogin = () => {
-    // TODO: Validasi login atau API call di sini
     console.log('Login attempt:', {email, password});
+    navigation.navigate('Home');
+  };
+
+  // Navigasi ke halaman SignUp
+  const goToSignUp = () => {
+    navigation.navigate('SignUp');
   };
 
   return (
     <View style={styles.container}>
+      {/* Logo */}
       <View style={styles.logoWrapper}>
         <Image
           source={require('../assets/LogoiBoxAPPS.png')}
@@ -47,8 +32,10 @@ export const SignInPage = () => {
         />
       </View>
 
+      {/* Judul */}
       <Text style={styles.title}>Masuk</Text>
 
+      {/* Form */}
       <View style={styles.formContainer}>
         <InputField
           placeholder="Email atau no. handphone"
@@ -72,13 +59,12 @@ export const SignInPage = () => {
           style={styles.loginButton}
         />
 
-        <TouchableOpacity
-          onPress={() => console.log('Navigasi ke SignUp belum aktif')}
-          style={styles.signUpContainer}>
+        <TouchableOpacity onPress={goToSignUp} style={styles.signUpContainer}>
           <Text style={styles.signUpText}>Daftar akun</Text>
         </TouchableOpacity>
       </View>
 
+      {/* Footer */}
       <View style={styles.footerContainer}>
         <View style={styles.dividerRow}>
           <View style={styles.divider} />

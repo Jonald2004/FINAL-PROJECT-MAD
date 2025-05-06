@@ -6,30 +6,20 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
-  TextInput,
-  Pressable,
-  FlatList,
-  SafeAreaView,
-  StatusBar,
-  Dimensions,
   Linking,
-  Platform,
-  ActivityIndicator,
   Alert,
-  Modal,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
-  RefreshControl,
-  ImageBackground,
-  ImageSourcePropType,
 } from 'react-native';
 import {CustomInput} from './components1/CustomInput';
 import {CustomButton} from './components1/CustomButton';
 import {GoogleSignInButton} from './components1/GoogleSignUpButton';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
+
+import auth from '@react-native-firebase/auth'; // 🔥 Firebase Auth
 
 export const SignUpPage = () => {
+  const navigation = useNavigation();
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
@@ -41,11 +31,39 @@ export const SignUpPage = () => {
     Linking.openURL('https://your-terms-url.com');
   };
 
+  const handleSignUp = async () => {
+    if (!termsAccepted) {
+      Alert.alert(
+        'Peringatan',
+        'Anda harus menyetujui syarat dan ketentuan terlebih dahulu.',
+      );
+      return;
+    }
+
+    if (!email || !password) {
+      Alert.alert('Peringatan', 'Email dan password wajib diisi.');
+      return;
+    }
+
+    try {
+      const userCredential = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      );
+      console.log('User berhasil daftar:', userCredential.user);
+
+      Alert.alert('Sukses', 'Pendaftaran berhasil!');
+      navigation.navigate('Home');
+    } catch (error) {
+      console.error(error);
+      Alert.alert('Gagal', error.message);
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
-        {/* Tombol back custom */}
-        <TouchableOpacity onPress={() => console.log('Back pressed')}>
+        <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
           <Text style={styles.backText}>← Kembali ke halaman masuk</Text>
         </TouchableOpacity>
 
@@ -97,16 +115,7 @@ export const SignUpPage = () => {
 
         <CustomButton
           title="Daftar akun"
-          onPress={() => {
-            console.log({
-              firstName,
-              lastName,
-              phone,
-              email,
-              password,
-              termsAccepted,
-            });
-          }}
+          onPress={handleSignUp}
           style={styles.signUpButton}
         />
 
@@ -116,8 +125,7 @@ export const SignUpPage = () => {
 
         <GoogleSignInButton onPress={() => {}} />
 
-        <TouchableOpacity
-          onPress={() => console.log('Navigasi ke SignIn (belum aktif)')}>
+        <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
           <Text style={{color: '#0071E7', fontSize: 12, marginTop: 16}}>
             Sudah punya akun? Masuk di sini
           </Text>

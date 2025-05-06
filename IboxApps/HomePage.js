@@ -1,6 +1,7 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 
+// Komponen
 import Header from './components3/Header';
 import InfoBanner from './components3/InfoBanner';
 import BannerCarousel from './components3/BannerCarousel';
@@ -22,7 +23,10 @@ import FooterPaymentSection from './components3/FooterPaymentSection';
 const HomePage = () => {
   return (
     <SafeAreaView style={styles.safe}>
+      {/* Header dengan navigasi built-in */}
       <Header />
+
+      {/* Konten scrollable */}
       <ScrollView showsVerticalScrollIndicator={false}>
         <InfoBanner />
         <BannerCarousel />
