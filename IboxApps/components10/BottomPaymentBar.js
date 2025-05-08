@@ -1,9 +1,28 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation
 
-const BottomPaymentBar = ({total = 11499000, onCheckout, onBack}) => {
+const BottomPaymentBar = ({total = 11499000, onCheckout, isAddressFilled}) => {
+  const navigation = useNavigation(); // Initialize navigation
+
   const formatPrice = price =>
     'Rp ' + price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+  // Function to handle checkout
+  const handleCheckout = () => {
+    if (isAddressFilled) {
+      navigation.navigate('Checkout'); // Navigate to Checkout if address is filled
+    } else {
+      // If no address, alert user and navigate to LengkapiAlamat
+      alert('Harap lengkapi alamat terlebih dahulu!');
+      navigation.navigate('Alamat'); // Navigate to LengkapiAlamat
+    }
+  };
+
+  // Function to go back to the cart
+  const handleBackToCart = () => {
+    navigation.navigate('LihatKeranjang'); // Navigate back to LihatKeranjang page
+  };
 
   return (
     <View style={styles.container}>
@@ -14,12 +33,12 @@ const BottomPaymentBar = ({total = 11499000, onCheckout, onBack}) => {
       </View>
 
       {/* Tombol Checkout */}
-      <TouchableOpacity style={styles.checkoutButton} onPress={onCheckout}>
+      <TouchableOpacity style={styles.checkoutButton} onPress={handleCheckout}>
         <Text style={styles.checkoutText}>Lanjut pembayaran</Text>
       </TouchableOpacity>
 
       {/* Tombol Kembali */}
-      <TouchableOpacity onPress={onBack}>
+      <TouchableOpacity onPress={handleBackToCart}>
         <Text style={styles.backText}>&lt; Kembali ke keranjang</Text>
       </TouchableOpacity>
     </View>

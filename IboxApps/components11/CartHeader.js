@@ -1,11 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation
 
-const CartHeader = ({onClose}) => {
+const CartHeader = () => {
+  const navigation = useNavigation(); // Access navigation
+
+  // Handle the close button press to go back to the previous screen
+  const handleClose = () => {
+    navigation.goBack(); // Navigate to the previous screen
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tambah alamat baru</Text>
-      <TouchableOpacity onPress={onClose}>
+      <TouchableOpacity onPress={handleClose}>
         <Image
           source={require('../../assets/Ikon/Icon16.png')}
           style={styles.icon}

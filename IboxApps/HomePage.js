@@ -1,5 +1,7 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, ScrollView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, StyleSheet, ScrollView, Text, View} from 'react-native';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 // Komponen
 import Header from './components3/Header';
@@ -21,13 +23,38 @@ import FooterContactSection from './components3/FooterContactSection';
 import FooterPaymentSection from './components3/FooterPaymentSection';
 
 const HomePage = () => {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const uid = auth().currentUser?.uid;
+    console.log('UID user saat ini:', uid);
+    if (uid) {
+      const userRef = database().ref(`/users/${uid}`);
+      const onValueChange = userRef.on('value', snapshot => {
+        console.log('Isi snapshot:', snapshot.val());
+        if (snapshot.exists()) {
+          setUserData(snapshot.val());
+        }
+      });
+
+      return () => userRef.off('value', onValueChange);
+    }
+  }, []);
+
   return (
     <SafeAreaView style={styles.safe}>
-      {/* Header dengan navigasi built-in */}
       <Header />
 
-      {/* Konten scrollable */}
       <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Sapaan user */}
+        {userData && (
+          <View style={styles.greetingContainer}>
+            <Text style={styles.greetingText}>
+              Selamat datang, {userData.firstName} {userData.lastName}! 👋
+            </Text>
+          </View>
+        )}
+
         <InfoBanner />
         <BannerCarousel />
         <ProductSection />
@@ -53,6 +80,16 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  greetingContainer: {
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    backgroundColor: '#f2f2f2',
+  },
+  greetingText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1E1E1E',
   },
 });
 

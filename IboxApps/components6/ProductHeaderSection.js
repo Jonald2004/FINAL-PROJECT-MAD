@@ -1,7 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native'; // ← Tambah ini
 
 const ProductHeaderSection = () => {
+  const navigation = useNavigation();
+
+  const [selectedColor, setSelectedColor] = useState('#D4D9DB');
+  const [colorLabel, setColorLabel] = useState('Blue');
+
+  const productImages = {
+    '#D4D9DB': require('../../assets/PilihDetailProduk/PDP11.png'),
+    '#E9C7C9': require('../../assets/PilihDetailProduk/PDP14.png'),
+    '#E8DEB6': require('../../assets/PilihDetailProduk/PDP13.png'),
+    '#EDF0E5': require('../../assets/PilihDetailProduk/PDP12.png'),
+    '#1F1F1F': require('../../assets/PilihDetailProduk/PDP15.png'),
+  };
+
+  const colorNames = {
+    '#D4D9DB': 'Blue',
+    '#E9C7C9': 'Pink',
+    '#E8DEB6': 'Yellow',
+    '#EDF0E5': 'Green',
+    '#1F1F1F': 'Black',
+  };
+
+  const handleColorSelect = color => {
+    setSelectedColor(color);
+    setColorLabel(colorNames[color]);
+  };
+
+  const goToFavorite = () => {
+    navigation.navigate('Favorite');
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.productName}>iPhone 15</Text>
@@ -9,11 +40,11 @@ const ProductHeaderSection = () => {
 
       <View style={styles.imageContainer}>
         <Image
-          source={require('../../assets/PilihDetailProduk/PDP11.png')}
+          source={productImages[selectedColor]}
           style={styles.productImage}
           resizeMode="contain"
         />
-        <TouchableOpacity style={styles.loveIconWrapper}>
+        <TouchableOpacity style={styles.loveIconWrapper} onPress={goToFavorite}>
           <Image
             source={require('../../assets/Ikon/Icon27.png')}
             style={styles.loveIcon}
@@ -35,13 +66,14 @@ const ProductHeaderSection = () => {
         </Text>
       </View>
 
-      <Text style={styles.colorLabel}>Warna - Blue</Text>
+      <Text style={styles.colorLabel}>Warna - {colorLabel}</Text>
       <View style={styles.colorOptions}>
         {['#D4D9DB', '#E9C7C9', '#E8DEB6', '#EDF0E5', '#1F1F1F'].map(
           (color, index) => (
-            <View
+            <TouchableOpacity
               key={index}
               style={[styles.colorCircle, {backgroundColor: color}]}
+              onPress={() => handleColorSelect(color)}
             />
           ),
         )}

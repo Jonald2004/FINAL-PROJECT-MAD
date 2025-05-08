@@ -9,15 +9,18 @@ import HomePage from '../HomePage';
 import AccountProfilePage from '../AccountProfilePage';
 import SemuaIphone from '../SemuaIphone';
 import PilihDetail from '../PilihDetail';
+import PilihDetail2 from '../PilihDetail2';
 import PreviewKeranjang from '../PreviewKeranjang';
 import LihatKeranjang from '../LihatKeranjang';
+import Keranjang from '../Keranjang';
 import FavoritePage from '../FavoritePage';
 import Pemesanan from '../Pemesanan';
-import LengkapiAlamat from '../LengkapiAlamat';
+import Alamat from '../Alamat';
 import SemuaMac from '../SemuaMac';
 import Checkout from '../Checkout';
 import ChatiBox from '../ChatiBox';
 import Menu from '../Menu';
+import OrderConfirmationPage from '../OrderConfirmationPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,15 +36,21 @@ const AppNavigator = () => {
         <Stack.Screen name="Account" component={AccountProfilePage} />
         <Stack.Screen name="SemuaIphone" component={SemuaIphone} />
         <Stack.Screen name="PilihDetail" component={PilihDetail} />
+        <Stack.Screen name="PilihDetail2" component={PilihDetail2} />
         <Stack.Screen name="PreviewKeranjang" component={PreviewKeranjang} />
         <Stack.Screen name="LihatKeranjang" component={LihatKeranjang} />
+        <Stack.Screen name="Keranjang" component={Keranjang} />
         <Stack.Screen name="Favorite" component={FavoritePage} />
         <Stack.Screen name="Pemesanan" component={Pemesanan} />
-        <Stack.Screen name="LengkapiAlamat" component={LengkapiAlamat} />
+        <Stack.Screen name="Alamat" component={Alamat} />
         <Stack.Screen name="SemuaMac" component={SemuaMac} />
         <Stack.Screen name="Checkout" component={Checkout} />
         <Stack.Screen name="ChatiBox" component={ChatiBox} />
         <Stack.Screen name="Menu" component={Menu} />
+        <Stack.Screen
+          name="OrderConfirmationPage"
+          component={OrderConfirmationPage}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,11 +1,20 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation
 
-const CartHeader = ({onClose}) => {
+const CartHeader = () => {
+  const navigation = useNavigation(); // Access navigation
+
+  const handleClose = () => {
+    navigation.goBack(); // Navigate back to the previous page
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Keranjangmu</Text>
-      <TouchableOpacity onPress={onClose}>
+      <TouchableOpacity onPress={handleClose}>
+        {' '}
+        {/* Call handleClose when icon is pressed */}
         <Image
           source={require('../../assets/Ikon/Icon16.png')}
           style={styles.icon}

@@ -1,9 +1,22 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation
 
 const BottomCheckoutBar = ({total = 11499000}) => {
+  const navigation = useNavigation(); // Initialize navigation
+
   const formatRupiah = num => {
     return 'Rp' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
+
+  // Function to navigate to ChatiBox page
+  const handleChatPress = () => {
+    navigation.navigate('ChatiBox'); // Navigate to ChatiBox page
+  };
+
+  // Function to navigate to Pemesanan page
+  const handleCheckoutPress = () => {
+    navigation.navigate('Pemesanan'); // Navigate to Pemesanan page
   };
 
   return (
@@ -13,12 +26,18 @@ const BottomCheckoutBar = ({total = 11499000}) => {
         <Text style={styles.totalValue}>{formatRupiah(total)}</Text>
       </Text>
 
-      <TouchableOpacity style={styles.checkoutButton}>
+      <TouchableOpacity
+        style={styles.checkoutButton}
+        onPress={handleCheckoutPress} // Call handleCheckoutPress when the checkout button is clicked
+      >
         <Text style={styles.checkoutText}>Checkout</Text>
       </TouchableOpacity>
 
       {/* Floating Chat Button */}
-      <TouchableOpacity style={styles.floatingChat}>
+      <TouchableOpacity
+        style={styles.floatingChat}
+        onPress={handleChatPress} // Call handleChatPress when the chat icon is clicked
+      >
         <Image
           source={require('../../assets/Ikon/Icon11.png')}
           style={styles.chatIcon}

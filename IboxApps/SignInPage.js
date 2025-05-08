@@ -1,29 +1,57 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {InputField} from './components2/InputField';
 import {Button} from './components2/Button';
 import {GoogleSignInButton} from './components2/GoogleSignUpButton';
+import auth from '@react-native-firebase/auth';
 
 const SignInPage = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // Fungsi login
-  const handleLogin = () => {
-    console.log('Login attempt:', {email, password});
-    navigation.navigate('Home');
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert('Peringatan', 'Email dan password wajib diisi.');
+      return;
+    }
+
+    try {
+      await auth().signInWithEmailAndPassword(email, password);
+      navigation.navigate('Home'); // Berhasil login
+    } catch (error) {
+      console.log(error.code);
+      switch (error.code) {
+        case 'auth/user-not-found':
+          Alert.alert('Login Gagal', 'Pengguna tidak ditemukan.');
+          break;
+        case 'auth/wrong-password':
+          Alert.alert('Login Gagal', 'Password salah.');
+          break;
+        case 'auth/invalid-email':
+          Alert.alert('Login Gagal', 'Format email tidak valid.');
+          break;
+        default:
+          Alert.alert('Login Gagal', 'Password salah.');
+          break;
+      }
+    }
   };
 
-  // Navigasi ke halaman SignUp
   const goToSignUp = () => {
     navigation.navigate('SignUp');
   };
 
   return (
     <View style={styles.container}>
-      {/* Logo */}
       <View style={styles.logoWrapper}>
         <Image
           source={require('../assets/LogoiBoxAPPS.png')}
@@ -32,10 +60,8 @@ const SignInPage = () => {
         />
       </View>
 
-      {/* Judul */}
       <Text style={styles.title}>Masuk</Text>
 
-      {/* Form */}
       <View style={styles.formContainer}>
         <InputField
           placeholder="Email atau no. handphone"
@@ -64,7 +90,6 @@ const SignInPage = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Footer */}
       <View style={styles.footerContainer}>
         <View style={styles.dividerRow}>
           <View style={styles.divider} />

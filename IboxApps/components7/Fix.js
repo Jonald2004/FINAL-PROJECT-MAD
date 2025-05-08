@@ -7,45 +7,71 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation
+import {useCart} from '../contexts/CartContext';
 
 const Fix = () => {
+  const {cart} = useCart(); // Access cart state
+  const navigation = useNavigation(); // Access navigation
+  const unitPrice = 11499000;
+
+  // Handle checkout button press
+  const handleCheckout = () => {
+    navigation.navigate('Pemesanan'); // Navigate to Pemesanan page
+  };
+
+  // Handle view favorite button press
+  const handleViewFavorite = () => {
+    navigation.navigate('Favorite'); // Navigate to Favorite page
+  };
+
+  // Handle view cart button press
+  const handleViewCart = () => {
+    navigation.navigate('LihatKeranjang'); // Navigate to LihatKeranjang page
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Item Section */}
-        <View style={styles.itemRow}>
-          <Image
-            source={require('../../assets/PreviewKeranjang/PK11.png')}
-            style={styles.image}
-          />
-          <View style={styles.details}>
-            <Text style={styles.itemTitle}>iPhone 15 128GB Blue</Text>
-            <Text style={styles.detail}>Warna: Blue</Text>
-            <Text style={styles.detail}>Model: iPhone 15</Text>
-            <Text style={styles.detail}>Kapasitas: 128 GB</Text>
-            <Text style={styles.detail}>Jumlah: 1</Text>
+        {cart.items.map((item, index) => (
+          <View key={index} style={styles.itemRow}>
+            <Image
+              source={require('../../assets/PreviewKeranjang/PK11.png')}
+              style={styles.image}
+            />
+            <View style={styles.details}>
+              <Text style={styles.itemTitle}>{item.product} 128GB Blue</Text>
+              <Text style={styles.detail}>Warna: Blue</Text>
+              <Text style={styles.detail}>Model: iPhone 15</Text>
+              <Text style={styles.detail}>Kapasitas: 128 GB</Text>
+              <Text style={styles.detail}>Jumlah: {item.quantity}</Text>
+            </View>
           </View>
-        </View>
+        ))}
 
         {/* Promo Section */}
         <View style={styles.promoSection}>
           <Text style={styles.promoTitle}>Promo bundling</Text>
           <Text style={styles.promoDetail}>APP 20W USB-C POWER ADAPTER</Text>
-          <Text style={styles.promoDetail}>Jumlah: 1</Text>
         </View>
       </ScrollView>
 
       {/* Bottom Bar */}
       <View style={styles.bottomBar}>
-        <TouchableOpacity>
-          <Text style={styles.linkText}>Lihat keranjang (1)</Text>
+        <TouchableOpacity onPress={handleViewCart}>
+          <Text style={styles.linkText}>
+            Lihat keranjang ({cart.items.length})
+          </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.checkoutButton}>
+        <TouchableOpacity
+          style={styles.checkoutButton}
+          onPress={handleCheckout}>
           <Text style={styles.checkoutText}>Checkout</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleViewFavorite}>
           <Text style={styles.linkText}>Lihat favorite</Text>
         </TouchableOpacity>
       </View>

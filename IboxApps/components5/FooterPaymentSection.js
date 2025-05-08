@@ -4,13 +4,21 @@ import {
   Text,
   StyleSheet,
   Image,
+  ScrollView,
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const {width} = Dimensions.get('window');
 
 const FooterPaymentSection = () => {
+  const navigation = useNavigation();
+
+  const handleChatPress = () => {
+    navigation.navigate('ChatiBox'); // Pastikan 'ChatiBox' sesuai dengan nama di Stack.Navigator
+  };
+
   return (
     <View style={styles.container}>
       {/* Social Media Icons */}
@@ -49,7 +57,7 @@ const FooterPaymentSection = () => {
       </Text>
 
       {/* Floating Chat Button */}
-      <TouchableOpacity style={styles.floatingChat}>
+      <TouchableOpacity style={styles.floatingChat} onPress={handleChatPress}>
         <Image
           source={require('../../assets/Ikon/Icon11.png')}
           style={styles.chatIcon}

@@ -1,9 +1,20 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation
+import {useCart} from '../contexts/CartContext'; // Import Cart Context
 
-const AddToCartBar = ({quantity}) => {
-  const unitPrice = 11499000;
-  const totalPrice = unitPrice * quantity;
+const AddToCartBar = ({product}) => {
+  const navigation = useNavigation(); // Inisialisasi useNavigation
+  const {cart} = useCart(); // Access cart state
+
+  const unitPrice = 11499000; // Harga produk satuan
+  const currentQuantity =
+    cart.items.find(item => item.product === product)?.quantity || 0; // Ambil kuantitas produk
+  const totalPrice = unitPrice * currentQuantity; // Menghitung harga total berdasarkan kuantitas
+
+  const handleAddToCart = () => {
+    navigation.navigate('PreviewKeranjang'); // Navigasi ke halaman Preview Keranjang
+  };
 
   return (
     <View style={styles.container}>
@@ -13,7 +24,7 @@ const AddToCartBar = ({quantity}) => {
           atau Rp479.125/bln. untuk 24 bln.*
         </Text>
       </View>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleAddToCart}>
         <Text style={styles.buttonText}>Tambahkan keranjang</Text>
       </TouchableOpacity>
     </View>

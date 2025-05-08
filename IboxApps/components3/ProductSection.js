@@ -5,19 +5,22 @@ import {
   StyleSheet,
   ScrollView,
   Image,
-  Dimensions,
+  TouchableOpacity,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const productList = [
   {
     image: require('../../assets/ImageHomePage/HP21.png'),
     name: 'Mac',
     price: 'Mulai Rp12 juta',
+    screen: 'SemuaMac', // Nama halaman navigasi untuk Mac
   },
   {
     image: require('../../assets/ImageHomePage/HP2234.png'),
     name: 'iPhone',
     price: 'Mulai Rp8 juta',
+    screen: 'SemuaIphone', // Nama halaman navigasi untuk iPhone
   },
   {
     image: require('../../assets/ImageHomePage/HP23.png'),
@@ -47,16 +50,27 @@ const productList = [
 ];
 
 const ProductSection = () => {
+  const navigation = useNavigation();
+
+  // Fungsi untuk navigasi ke halaman produk
+  const handleProductPress = screen => {
+    navigation.navigate(screen);
+  };
+
   return (
     <View style={styles.section}>
       <Text style={styles.sectionTitle}>Berbagai produk Apple.</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {productList.map((item, index) => (
-          <View style={styles.card} key={index}>
+          <TouchableOpacity
+            key={index}
+            style={styles.card}
+            onPress={() => handleProductPress(item.screen || '')} // Menentukan navigasi saat produk ditekan
+          >
             <Image source={item.image} style={styles.image} />
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.price}>{item.price}</Text>
-          </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>

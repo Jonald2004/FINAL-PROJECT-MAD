@@ -15,7 +15,8 @@ import {GoogleSignInButton} from './components1/GoogleSignUpButton';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 
-import auth from '@react-native-firebase/auth'; // 🔥 Firebase Auth
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 export const SignUpPage = () => {
   const navigation = useNavigation();
@@ -50,13 +51,29 @@ export const SignUpPage = () => {
         email,
         password,
       );
-      console.log('User berhasil daftar:', userCredential.user);
+      const user = userCredential.user;
+
+      // Simpan ke Realtime Database
+      await database().ref(`/users/${user.uid}`).set({
+        firstName,
+        lastName,
+        phone,
+        email,
+      });
 
       Alert.alert('Sukses', 'Pendaftaran berhasil!');
       navigation.navigate('Home');
     } catch (error) {
       console.error(error);
-      Alert.alert('Gagal', error.message);
+      if (error.code === 'auth/email-already-in-use') {
+        Alert.alert('Gagal', 'Email sudah digunakan');
+      } else if (error.code === 'auth/invalid-email') {
+        Alert.alert('Gagal', 'Format email tidak valid');
+      } else if (error.code === 'auth/weak-password') {
+        Alert.alert('Gagal', 'Password terlalu lemah (minimal 6 karakter)');
+      } else {
+        Alert.alert('Gagal', error.message);
+      }
     }
   };
 

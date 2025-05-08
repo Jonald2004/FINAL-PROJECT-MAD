@@ -18,20 +18,24 @@ const Header = () => {
 
         {/* Icon kanan */}
         <View style={styles.headerRight}>
-          <Image
-            source={require('../../assets/Ikon/Icon2.png')}
-            style={styles.icon}
-          />
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+            <Image
+              source={require('../../assets/Ikon/Icon2.png')}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('Account')}>
             <Image
               source={require('../../assets/Ikon/Icon3.png')}
               style={styles.icon}
             />
           </TouchableOpacity>
-          <Image
-            source={require('../../assets/Ikon/Icon4.png')}
-            style={styles.icon}
-          />
+          <TouchableOpacity onPress={() => navigation.navigate('Keranjang')}>
+            <Image
+              source={require('../../assets/Ikon/Icon4.png')}
+              style={styles.icon}
+            />
+          </TouchableOpacity>
         </View>
 
         {/* Logo tengah */}

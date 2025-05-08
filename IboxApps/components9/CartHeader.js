@@ -1,11 +1,18 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-const CartHeader = ({onClose}) => {
+const CartHeader = () => {
+  const navigation = useNavigation();
+
+  const handleClose = () => {
+    navigation.navigate('Home');
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Favoritmu</Text>
-      <TouchableOpacity onPress={onClose}>
+      <TouchableOpacity onPress={handleClose}>
         <Image
           source={require('../../assets/Ikon/Icon16.png')}
           style={styles.icon}

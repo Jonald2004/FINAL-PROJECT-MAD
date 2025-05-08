@@ -8,6 +8,7 @@ const firebaseConfig = {
   storageBucket: 'iboxapps-mad2025.appspot.com',
   messagingSenderId: '473525915679',
   appId: '1:473525915679:web:49144919922e121395452a',
+  databaseURL: 'https://iboxapps-mad2025-default-rtdb.firebaseio.com/',
 };
 
 if (!firebase.apps.length) {

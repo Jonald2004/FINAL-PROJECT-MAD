@@ -1,10 +1,20 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Linking} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import QuantitySelector from './QuantitySelector';
 
 const DetailOptionsSection = ({quantity, setQuantity}) => {
   const [selectedModel, setSelectedModel] = React.useState('iPhone 15');
   const [selectedStorage, setSelectedStorage] = React.useState('128 GB');
+
+  const navigation = useNavigation();
+
+  const handleModelSelect = model => {
+    setSelectedModel(model);
+    if (model === 'iPhone 15 Plus') {
+      navigation.navigate('PilihDetail2');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -13,7 +23,7 @@ const DetailOptionsSection = ({quantity, setQuantity}) => {
       {['iPhone 15', 'iPhone 15 Plus'].map(model => (
         <TouchableOpacity
           key={model}
-          onPress={() => setSelectedModel(model)}
+          onPress={() => handleModelSelect(model)}
           style={styles.option}>
           <Text
             style={[

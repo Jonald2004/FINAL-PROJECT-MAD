@@ -1,14 +1,21 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native'; // Import useNavigation
 
 const DeliveryInfoSection = () => {
+  const navigation = useNavigation(); // Initialize navigation
+
+  const handleAddressPress = () => {
+    navigation.navigate('Alamat'); // Navigate to LengkapiAlamat screen
+  };
+
   return (
     <View style={styles.container}>
       {/* Dikirim ke */}
       <Text style={styles.sectionTitle}>Dikirim ke</Text>
       <TouchableOpacity
         style={styles.alertBox}
-        onPress={() => navigation.navigate('AlamatPage')} // ganti dengan nama screen kamu
+        onPress={handleAddressPress} // Navigate to LengkapiAlamat when pressed
         activeOpacity={0.8}>
         <Image
           source={require('../../assets/Ikon/Icon18.png')}

@@ -1,9 +1,9 @@
 import React from 'react';
 import {
   View,
-  Text,
   TextInput,
   StyleSheet,
+  Text,
   TouchableOpacity,
   Image,
 } from 'react-native';
@@ -24,7 +24,6 @@ const FormInputSection = ({form, handleChange}) => {
 
   return (
     <View style={styles.container}>
-      {/* Input Teks */}
       <TextInput
         placeholder="Nama depan"
         value={form.namaDepan}
@@ -53,7 +52,6 @@ const FormInputSection = ({form, handleChange}) => {
         style={[styles.input, styles.textArea]}
       />
 
-      {/* Hint */}
       <View style={styles.hintRow}>
         <Image
           source={require('../../assets/Ikon/Icon20.png')}
@@ -64,7 +62,6 @@ const FormInputSection = ({form, handleChange}) => {
         </Text>
       </View>
 
-      {/* Dropdown */}
       {renderDropdownInput('Provinsi', 'provinsi')}
       {renderDropdownInput('Kota', 'kota')}
       {renderDropdownInput('Kecamatan', 'kecamatan')}

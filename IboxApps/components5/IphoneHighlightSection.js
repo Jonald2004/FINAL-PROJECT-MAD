@@ -1,7 +1,14 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const IphoneHighlightSection = () => {
+  const navigation = useNavigation();
+
+  const handleBuyNow = () => {
+    navigation.navigate('PilihDetail');
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Temukan iPhone terbaik untukmu.</Text>
@@ -24,7 +31,7 @@ const IphoneHighlightSection = () => {
         <Text style={styles.secondaryText}>Lebih lanjut &gt;</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.primaryButton}>
+      <TouchableOpacity style={styles.primaryButton} onPress={handleBuyNow}>
         <Text style={styles.primaryText}>Beli sekarang</Text>
       </TouchableOpacity>
     </View>
