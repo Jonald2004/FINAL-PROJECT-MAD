@@ -1,8 +1,11 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+// IboxApps/navigation/AppNavigator.js
 
-// Import semua page
+import React, {useEffect} from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+
+// Import halaman utama
+import SplashScreen from '../SplashScreen';
 import SignUpPage from '../SignUpPage';
 import SignInPage from '../SignInPage';
 import HomePage from '../HomePage';
@@ -29,7 +32,8 @@ const AppNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{headerShown: false}}
-        initialRouteName="SignUp">
+        initialRouteName="Splash">
+        <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="SignUp" component={SignUpPage} />
         <Stack.Screen name="SignIn" component={SignInPage} />
         <Stack.Screen name="Home" component={HomePage} />
